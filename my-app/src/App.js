@@ -1,14 +1,16 @@
 
 import './App.css';
 // import { Box } from '@chakra-ui/react';
-import WithSubnavigation from "../src/Navbar/Navbar"
-import Simple from "../src/Login/Login"
-
+// import Navbar from "../src/Navbar/Navbar"
+// import SimpleCard from "../src/Login/Login"
+import AllRoutes from "../src/AllRoutes/AllRoutes"
 function App() {
   return (<div>
     
   {/* <SimpleCard /> */}
-  <Simple />
+
+  <AllRoutes />
+  
   </div>
   )
   
