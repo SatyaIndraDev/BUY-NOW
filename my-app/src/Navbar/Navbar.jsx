@@ -12,8 +12,12 @@ function Navbar (){
     </Link>
   
   
-    <Link to="/product">
-      <h3 data-testid="home-link">Product</h3>
+    <Link to="/mens">
+      <h3 data-testid="home-link">Mens</h3>
+    </Link>
+    
+    <Link to="/mens">
+      <h3 data-testid="home-link">Womens</h3>
     </Link>
    
     <Link to="/login">

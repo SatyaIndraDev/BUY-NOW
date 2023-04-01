@@ -1,49 +1,15 @@
 
 import { Link } from "react-router-dom";
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Checkbox,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
-  
+    Flex,Box,FormControl,FormLabel,Input,Checkbox,Stack,Button, Heading,Text,useColorModeValue,} from '@chakra-ui/react';
+    
+  import Navbar from "../Navbar/Navbar";
 
 
 
   export default function SimpleCard() {
     return <div>
-   
-    <div>
-     
-     <Link to="/">
-       <h3 data-testid="home-link">Home</h3>
-     </Link>
-
-
-     <Link to="/product">
-       <h3 data-testid="home-link">Product</h3>
-     </Link>
-    
-     <Link to="/login">
-       <h3 data-testid="home-link">Login</h3>
-     </Link>
-     
-     <Link to="/cart">
-       <h3 data-testid="cart-link">Cart</h3>
-     </Link>
-     <Link to="/admin">
-       <h3 data-testid="checkout-link">Admin</h3>
-     </Link>
-  
-    </div>
-
+   <Navbar />
     
     <div> <Flex
     minH={'100vh'}
