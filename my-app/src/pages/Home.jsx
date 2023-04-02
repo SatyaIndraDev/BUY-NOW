@@ -1,16 +1,18 @@
 
-import { Box,Flex,Grid,Image,Text} from "@chakra-ui/react";
-import { Container } from "react-bootstrap";
-import Footer from "../Footer/Footer";
+import { Box,Flex,Grid,Image,Text,Container } from "@chakra-ui/react";
+
+import Appa from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-
-
+import Carousel from "./Crousel";
+// import Footerr from "../pages/Crousel"
 
 function Home() {
   return (
    <div>
   
-   <Navbar/>  
+   <Navbar/>   
+
+   <Carousel/>
     <div>
    
    <Box   >
@@ -28,7 +30,7 @@ alt="" />
 
 </Flex >
 <Flex  m="0px 60px">
-<h2>Essentials by Koovs</h2>
+<h2>Essentials by Buynow</h2>
 
 </Flex>
 {/* ---------------------grid stable 2 */}
@@ -210,7 +212,8 @@ alt="" />
 
 
 */}
-<Text fontSize="30px" pt="30px" textAlign="center" pb="10px">Brands on koovs </Text>
+<Carousel/>
+<Text fontSize="30px" pt="30px" textAlign="center" pb="10px">Brands on Buynow </Text>
 
 <Grid gridTemplateColumns="repeat(8,1fr)" m="10px">
 <Image src="./images/s3 (1).jpg" 
@@ -238,9 +241,13 @@ alt="" />
 
 </Grid>
 
-<Footer />
+
+
+
+
+
    </div>
-   
+   <Appa />
    </div>
   )
 }

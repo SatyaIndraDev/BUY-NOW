@@ -1,11 +1,12 @@
 import Navbar from "../Navbar/Navbar";
 
-import {Button,FormControl,Input} from "@chakra-ui/react"
+import {Button,FormControl,Input,Center} from "@chakra-ui/react"
  import axios from "axios"
 
  import{useState} from "react"
-import { Container } from "react-bootstrap";
+import { Container } from "@chakra-ui/react";
 import Product from "./Adminproductdata";
+
 
 function Admin (){
     const initial_state = {
@@ -16,8 +17,11 @@ function Admin (){
         price:""
       }
     
-    
-    const[input_data,setData]=useState(initial_state)
+    const [updated,setUpdated]=useState(false)
+
+    const[input_data,setData]=useState(initial_state);
+
+
     
     
     const handleChange =(e)=>{
@@ -26,26 +30,31 @@ function Admin (){
     setData({...input_data,[name]:value})
     
     }
-    
-    
+
+
     const Add_cat=async ()=>{
       const url=`https://products-v7vr.onrender.com/products?`
-      let res=await axios.post(url,input_data)
-      console.log(res)
+      let res=await axios.post(url,input_data);
+      setUpdated(!updated)
+      
     }
     
     const handleSubmit=(e)=>{
       e.preventDefault();
-      Add_cat()
-    }
+      Add_cat();
     
+    }
+
+
     
       return (
-       <Container>
-      <Navbar/>
-        <div className="addCatContainer">
-          <form className="form">
-            <FormControl>
+        <div>
+          <Navbar/>
+          <Container >
+      
+        <div className="addCatContainer" >
+          <form className="form" >
+            <FormControl m="20px">
 
                               <Input onChange={handleChange} name ="image" className="image" placeholder="Image" />
 
@@ -60,15 +69,25 @@ function Admin (){
               <Input onChange={handleChange} name ="price"  className="cost" placeholder="price" type="number" />
 
               {/* <Input onChange={handleChange} name ="id"  className="id" placeholder="id" type="number" /> */}
-
-              <Button onClick={handleSubmit} colorScheme={"green"} className="submitBtn">
-                Submit
-              </Button>
+<Center>
+              <Button onClick={handleSubmit} colorScheme={"green"} className="submitBtn" mt="20px"   p={4}
+  color='white'
+  fontWeight='bold'
+  borderRadius='md'
+  bgGradient='linear(to-r, teal.500, green.500)'
+  _hover={{
+    bgGradient: 'linear(to-r, red.500, yellow.500)',
+  }}>
+                Submit 
+              </Button></Center>
             </FormControl>
           </form>
         </div>
-        <Product/>
+       
         </Container>
+        <Product updated={updated}  />
+        </div>
+       
       );
 }
 
