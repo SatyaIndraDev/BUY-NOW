@@ -1,13 +1,42 @@
-
 import { Link } from "react-router-dom";
+import {useContext} from "react"
+import { Context } from "../context/Authcontext";
 import {
     Flex,Box,FormControl,FormLabel,Input,Checkbox,Stack,Button, Heading,Text,useColorModeValue,} from '@chakra-ui/react';
+
+    import{useState} from "react"
     
   import Navbar from "../Navbar/Navbar";
 
 
-
+const init={
+  email:"",
+  password:""
+}
   export default function SimpleCard() {
+
+    const [input,setinput]=useState(init)
+
+const {login}=useContext(Context)
+// console.log(login,auth)
+
+
+const handleChange=(e)=>{
+// console.log(e.target.value)
+setinput({
+  ...input,
+  [e.target.name]:e.target.value
+}
+)
+}
+
+const handleSubmit=()=>{
+  console.log(input)
+  login(input)
+}
+
+console.log(input)
+
     return <div>
    <Navbar />
     
@@ -31,11 +60,11 @@ import {
         <Stack spacing={4}>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" />
+            <Input type="email" name="email" onChange={handleChange} placeholder="test" />
           </FormControl>
           <FormControl id="password">
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input type="password" name="password" onChange={handleChange}  placeholder="test1"/>
           </FormControl>
           <Stack spacing={10}>
             <Stack
@@ -45,7 +74,7 @@ import {
               <Checkbox>Remember me</Checkbox>
               <Link color={'blue.400'}>Forgot password?</Link>
             </Stack>
-            <Button
+            <Button onClick={handleSubmit}
               bg={'blue.400'}
               color={'white'}
               _hover={{
@@ -59,6 +88,4 @@ import {
     </Stack>
   </Flex>
 </div></div>
-     
-     
   }

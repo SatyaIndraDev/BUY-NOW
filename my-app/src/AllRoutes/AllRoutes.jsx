@@ -10,6 +10,7 @@ import Admin from "../pages/Admin";
 
 import Login from "../Login/Login";
 
+import PrivateRoutes from "../PrivateRoutes"
 
 function AllRoutes() {
   return (
@@ -17,14 +18,14 @@ function AllRoutes() {
 
             <Route path = '/' element = {<Home />} />
 
-            <Route path = '/mens' element = {<Product  />} />
+            <Route path = '/mens' element = {  <Product  />} />
             
 
             <Route path = '/cart' element = {<Cart />} />
 
            
             <Route path = '/login' element = {<Login />} />
-            <Route path = '/admin' element = {<Admin />} />
+            <Route path = '/admin' element = {<PrivateRoutes><Admin /></PrivateRoutes>} />
 
 
 
