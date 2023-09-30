@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# SHOP NOW
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+💻 Koovs ( clone ) : an ecommerce Website 🚀🎯
 
-## Available Scripts
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This project is a clone of the popular e-commerce website, Koovs. It functions similarly to the original Myntra platform, allowing users to create accounts, buy and sell products, bid on auctions, and leave feedback for transactions. The website features various categories for Clothing Products for Mens, Womens, Kids and other Accessories.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Secure user authentication and authorization
+- User profiles for buying and selling products
+- Categories for organizing products
+- Checkout process for buyers to purchase products
+- Functionality on products
+- Sort by Price
+- Filter by brands
+-search by name, product or brand
+- Multiple filters functionality
+- Add to Cart | Delete from Cart | Proceed to checkout
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `HTML`
+- `CSS`
+- `Javascript`
+- `React`
+- `Chakra UI`
+- `React Router`
 
-### `npm run build`
+## Demo 
+- Landing Page
+![Screenshot (1381)](https://user-images.githubusercontent.com/112798268/235489073-18515f27-49e1-4791-9a69-6d30af25749c.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Screenshot (1382)](https://user-images.githubusercontent.com/112798268/235489089-8cc315b9-a78e-4f4d-be44-0586d6870921.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**GUIDE :** `⬇️ If you click on Mens , you can able to see the following Interface` and here are all different functionalities you can sort by price, sort by name, and search by name,brand and all different functionalities are on this page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Screenshot (1390)](https://user-images.githubusercontent.com/112798268/235490695-7d9c703c-e214-4b48-95c0-d92a8d2648df.png)
 
-### `npm run eject`
+![Screenshot (1391)](https://user-images.githubusercontent.com/112798268/235490697-4a48ad63-45c7-43c1-9a67-0506d1f6c937.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**GUIDE :** `If you click on add to Cart, item will be added to Cart`![Screenshot (1392)](https://user-images.githubusercontent.com/112798268/235490701-935eeca3-7002-42d7-92d8-b2fbb8fce1a3.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**GUIDE :** `⬇️This is the Cart Page, here you can see all Products which you have added to cart⬇️` on right side there are payment details of your cart products
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Screenshot (1393)](https://user-images.githubusercontent.com/112798268/235491305-44348723-c6f0-4eeb-9dcf-19fda9fbdea7.png)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**GUIDE :** `To go on Admin page click on Admin option in Navbar`
 
-### Code Splitting
+`you can log into Admin page with these Credentials` and there you can perform all create and delete functionality.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`email-test@test.com
+password-test1`
 
-### Analyzing the Bundle Size
+![Screenshot (1394)](https://user-images.githubusercontent.com/112798268/235491592-b527da21-8d46-48f0-8a60-9913651b88d2.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Screenshot (1395)](https://user-images.githubusercontent.com/112798268/235491600-3ef07ef0-b989-42db-95e2-e709b6222e68.png)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Screenshot (1396)](https://user-images.githubusercontent.com/112798268/235491605-d5bbf386-5f4c-458b-a1d5-dbe7d8d59d1e.png)
