@@ -12,7 +12,7 @@ import {
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
 
- const Appa = () => (
+ const Footer = () => (
   <Container as="footer" role="contentinfo">
  
     <Stack
@@ -122,7 +122,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 )
 
 
-export default Appa
+export default Footer
 
 
 // import {Flex,Container,Image} from "@chakra-ui/react"

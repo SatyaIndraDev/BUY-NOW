@@ -2,15 +2,25 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 
-import Product from "../pages/MensProduct";
+import ProductList  from "../pages/ProductList ";
 
-import Cart from "../pages/Cart"
 
-import Admin from "../pages/Admin";
 
-import Login from "../Login/Login";
 
-import PrivateRoutes from "../PrivateRoutes"
+
+// import Login from "../Component/Login";
+
+
+import { AdminPage } from "../pages/AdminPage";
+import Login from "../pages/Login";
+import PrivateRoutes from "./PrivateRoutes";
+
+import PaymentPage from "../pages/PaymentPage";
+import CartPage from "../pages/CartPage";
+import ShoppingCart from "../pages/ShoppingCart";
+
+
+
 
 function AllRoutes() {
   return (
@@ -18,15 +28,18 @@ function AllRoutes() {
 
             <Route path = '/' element = {<Home />} />
 
-            <Route path = '/mens' element = {  <Product  />} />
+            <Route path = '/mens' element = {  <ProductList />} />
             
 
-            <Route path = '/cart' element = {<Cart />} />
+            <Route path = '/cart' element = {<CartPage />} />
 
            
-            <Route path = '/login' element = {<Login />} />
-            <Route path = '/admin' element = {<PrivateRoutes><Admin /></PrivateRoutes>} />
+            <Route path = '/login' element = {<Login/>} />
 
+            <Route path = '/payment' element = {<PaymentPage />} />
+
+            <Route path = '/admin' element = {<PrivateRoutes><AdminPage /></PrivateRoutes>} />
+            {/* <Route path="/payment" component={<PaymentPage />} /> */}
 
 
 

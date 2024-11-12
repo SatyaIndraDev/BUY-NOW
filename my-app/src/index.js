@@ -6,20 +6,29 @@ import {ChakraProvider} from "@chakra-ui/react"
 import {BrowserRouter} from "react-router-dom"
 import reportWebVitals from './reportWebVitals';
 
-import {Authcontext} from "./context/Authcontext"
+
+
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+import {  Authcontext } from './AllRoutes/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Authcontext>
 
   <BrowserRouter>
+
   <ChakraProvider>
 
-  <App />
+  <Provider store={store}>
+    <App />
+    </Provider>
     
   </ChakraProvider>
+  
   </BrowserRouter>
   </Authcontext>
+
 
 );
 

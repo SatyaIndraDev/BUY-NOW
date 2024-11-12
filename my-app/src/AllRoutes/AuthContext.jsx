@@ -1,5 +1,5 @@
 import { createContext,useState } from "react";
-import {Navigate,useNavigate,Link} from "react-router-dom"
+
 
 
 export const Context=createContext()
@@ -15,7 +15,7 @@ const [auth,setauth]=useState(false)
 const login=(input)=>{
 const{email,password}=input
 
-    if((email==="test") && (password==="test1")){
+    if((email==="admin@gmail.com") && (password==="admin")){
             setauth(true)
             console.log("login success")
             console.log("logged")
@@ -27,9 +27,17 @@ const{email,password}=input
     }
 }
 
+const logout = () => {
+    
+setauth(false);
+    console.log("logout success");
+  };
+
+
+
     return(
 
-        <Context.Provider value={{auth,login}}>
+        <Context.Provider value={{auth,login,logout}}>
 
         {props.children}
     

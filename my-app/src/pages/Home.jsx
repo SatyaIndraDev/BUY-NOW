@@ -1,18 +1,19 @@
 
 import { Box,Flex,Grid,Image,Text,Container } from "@chakra-ui/react";
 
-import Appa from "../Footer/Footer";
-import Navbar from "../Navbar/Navbar";
+
+
 import Carousel from "./Crousel";
+import Footer from "../Component/Footer";
 // import Footerr from "../pages/Crousel"
 
 function Home() {
   return (
    <div>
   
-   <Navbar/>   
+   
 
-   <Carousel/>
+   
     <div>
    
    <Box   >
@@ -21,6 +22,7 @@ function Home() {
   </Image>
   
   </Box>
+  <Carousel/>
 <Flex gap="30px" m="40px">
 <Image boxSize='650px' src="./images/s1 (1).jpg" 
 alt="" />
@@ -247,7 +249,7 @@ alt="" />
 
 
    </div>
-   <Appa />
+   <Footer />
    </div>
   )
 }

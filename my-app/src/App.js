@@ -4,13 +4,19 @@ import './App.css';
 // import Navbar from "../src/Navbar/Navbar"
 // import SimpleCard from "../src/Login/Login"
 import AllRoutes from "../src/AllRoutes/AllRoutes"
+import Navbar from './Component/Navbar';
+import Footer from './Component/Footer';
+
 function App() {
   return (<div>
     
   {/* <SimpleCard /> */}
+ 
 
+<Navbar />
   <AllRoutes />
   
+  <Footer />
   </div>
   )
   

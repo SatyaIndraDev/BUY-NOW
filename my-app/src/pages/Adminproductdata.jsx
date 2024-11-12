@@ -1,9 +1,9 @@
-
-
-import { Box,Button,Center,Img,SimpleGrid,Text,VStack,Spinner,} from "@chakra-ui/react";
+import { Box,Button,Center,Img,SimpleGrid,Spinner,  Flex,Text, VStack ,Grid} from "@chakra-ui/react";
 import {useState,useReducer,useEffect} from "react"
 
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { deletedata } from "../Redux/Admin/actions";
 
 
 const initialState = {
@@ -24,14 +24,13 @@ default:return state
 
 }
 
-function Product ({updated}){
+function Product ({setRen, ren}){
  
-const [order,setOrder]=useState("asc")
+
 
 const [state,dispatch]=useReducer(reducer,initialState)
 
-const [filterBreed,setBreed]=useState("")
-
+const [rendor,setRendor] =useState(false)
 
 
 const getData=async(url)=>{
@@ -50,33 +49,46 @@ catch(err) {
 }
 
 
+const [id,setId]=useState("")
+const dispatch2=useDispatch()
+
 
 
 useEffect(()=>{
-const url=`https://products-v7vr.onrender.com/products?_sort=price&_order=${order}`
+const url=`https://buy-now-be.onrender.com/products`
 
 
 
   getData(url)  
   
-  },[order,updated])
+  },[rendor,ren])
 
 
 
 
 
 // delete-----------------
-const handleDelete =async (id)=>{
-const url=`https://products-v7vr.onrender.com/products/${id}`
+const handleDelete =async (_id)=>{
 
 
-let res= await axios.delete(url)
 
-const url2=`https://products-v7vr.onrender.com/products?_sort=price&_order=${order}`
+if(_id){
+    dispatch2(deletedata(_id,setRen))
+    setRen(true)  
+ 
+    
+}
 
-getData(url2)
+else{
+alert ("Ohh! you are not providing complete data")
+}
+ 
 
 }
+
+
+
+
 
 
   return (
@@ -85,43 +97,42 @@ getData(url2)
      
   
     
-      {/* Map the below container against your data */}
+    {/* Map the below container against your data */}
 
-      {state.isLoading?
-      <Center><Spinner
-      thickness='4px'
-      speed='0.65s'
-      emptyColor='gray.200'
-      color='blue.500'
-      size='xl'
-    /></Center>:
-      <SimpleGrid  gap='10px' columns={4} className="main_container" m="20px">
+    {state.isLoading?
+    <Center><Spinner
+    thickness='4px'
+    speed='0.65s'
+    emptyColor='gray.200'
+    color='blue.500'
+    size='xl'
+  /></Center>:
 
-        {
-          state.data?.map((el)=>{
+    <Grid  gap='6px'  templateColumns="repeat(4,1fr)" className="main_container" m="20px" >
 
-
-         
-        return <Box mt="25px"  key={el.id} boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"  >
-          <Center>
-            <Img height="400px" w="100%" src={el.image}/>
-          </Center>
-
-          <VStack spacing={2} p={2}>
-            <Text className="name" fontSize={"20px"} fontWeight="bold">{el.name}</Text>
-            <Text className="rating">{el.rating}</Text>
-            <Text className="likes">{el.desc}</Text>
-            <Text className="breed">{el.price}</Text>
-            <Text className="description">{el.description}</Text>
-            <Button onClick={()=>{handleDelete(el.id)}} className="delete">Delete</Button>
-          </VStack>
-        </Box>
+      {
+         state?.data?.products?.map((el)=>{
 
 
-            })}
-      </SimpleGrid>
+       
+      return <Box mt="25px" m="30px" p="10px"  key={el.id} boxShadow=" rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; " textAlign={"center"}    >
+        <Center>
+          <Img height="300px" w="100%" src={el.image}/>
+        </Center>
+        <h1>ID: {el._id}</h1>
+          <Text fontSize={"20px"} fontWeight="bold">{el.name}</Text>
+          <Text >{el.desc}</Text>
+          <Text >{el.rating}</Text>
+          <Text >{el.price}</Text>
+          <Button onClick={()=>{handleDelete(el._id)}} className="delete" style={{width:"80px" ,height:"30px" ,backgroundColor:"#D1C4E9" , marginTop:"20px"}}>Delete</Button>
+       
+      </Box>
+
+
+          })}
+    </Grid>
 }
-    </div>
+  </div>
   );
 }
 
