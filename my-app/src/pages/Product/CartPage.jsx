@@ -11,43 +11,61 @@ const CartPage = () => {
         setCart(storedCart);
     }, []);
 
-    const removeFromCart = (productToRemove) => {
-        // Filter out the product completely if quantity is 1 or reduce its quantity
-        let updatedCart = cart.map(product => {
-            if (product.id === productToRemove.id) {
-                return { ...product, quantity: product.quantity - 1 };
-            }
-            return product;
-        }).filter(product => product.quantity > 0);
+  const removeFromCart = (productToRemove) => {
+    let updatedCart = cart.map(product => {
+        if (product._id === productToRemove._id) {
+            return { ...product, quantity: product.quantity - 1 };
+        }
+        return product;
+    }).filter(product => product.quantity > 0);
 
-        setCart(updatedCart);
-        localStorage.setItem('cart2', JSON.stringify(updatedCart));
-    };
+    setCart(updatedCart);
+    localStorage.setItem('cart2', JSON.stringify(updatedCart));
+};
 
-    const addToCart = (productToUpdate) => {
-        // Increase the quantity of the product in the cart by 1
-        const updatedCart = cart.map(product => {
-            if (product.id === productToUpdate.id) {
-                return { ...product, quantity: product.quantity + 1 };
-            }
-            return product;
-        });
+const addToCart = (productToUpdate) => {
+    const updatedCart = cart.map(product => {
+        if (product._id === productToUpdate._id) {
+            return { ...product, quantity: product.quantity + 1 };
+        }
+        return product;
+    });
 
-        setCart(updatedCart);
-        localStorage.setItem('cart2', JSON.stringify(updatedCart));
-    };
+    setCart(updatedCart);
+    localStorage.setItem('cart2', JSON.stringify(updatedCart));
+};
+
 
     const calculateTotal = () => {
         // Calculate the total cost based on quantity and price
         return cart.reduce((total, product) => total + (product.price * product.quantity), 0);
     };
 
-    const handlePayment = () => {
-        // Clear the cart on successful payment
-        localStorage.removeItem('cart2');
-        setCart([]);
-        alert("Payment Successful!");
-    };
+   const handlePayment = () => {
+    const currentTime = new Date();
+    const timestamp = currentTime.toLocaleString(); // Example: "15/5/2025, 3:42:10 pm"
+
+    const orderedItems = cart.map(product => ({
+        ...product,
+        orderedAt: timestamp,
+    }));
+
+    // Save ordered items to new localStorage key
+    localStorage.setItem('ordered', JSON.stringify(orderedItems));
+
+    // Clear cart
+    localStorage.removeItem('cart2');
+    setCart([]);
+
+    alert("Payment Successful! Order has been placed.");
+};
+
+    const deleteFromCart = (productToDelete) => {
+    const updatedCart = cart.filter(product => product._id !== productToDelete._id);
+    setCart(updatedCart);
+    localStorage.setItem('cart2', JSON.stringify(updatedCart));
+};
+
 
     return (
         <Box maxW="container.md" mx="auto" p={4}>
@@ -85,7 +103,7 @@ const CartPage = () => {
                                                 colorScheme="red"
                                                 variant="ghost"
                                                 aria-label="Remove item"
-                                                onClick={() => removeFromCart(product)}
+                                                onClick={() => deleteFromCart(product)}
                                             />
                                         </HStack>
                                         <Text mt={2}>Price: ${product.price.toFixed(2)}</Text>

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import ProductItem from './ProductItem';
+import React, { useState, useEffect, useMemo } from 'react';
+import ProductItem from './ProductItem'
 import './ProductList.css';
-import { Center, Input } from '@chakra-ui/react';
-import ProductListSkeleton from './skeleton';
-import Spinner from './Spinner';
+import { Center } from '@chakra-ui/react';
+import ProductListSkeleton from '../skeleton';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -22,28 +21,36 @@ const ProductList = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      let query = `?`;
-      if (search) query += `search=${encodeURIComponent(search)}&`;
-      if (rating) query += `rating=${rating}&`;
-      if (priceMin) query += `priceMin=${priceMin}&`;
-      if (priceMax) query += `priceMax=${priceMax}&`;
-      if (sortField) query += `sortField=${sortField}&`;
-      if (sortOrder) query += `sortOrder=${sortOrder}&`;
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      if (rating) params.append('rating', rating);
+      if (priceMin) params.append('priceMin', priceMin);
+      if (priceMax) params.append('priceMax', priceMax);
+      if (sortField) params.append('sortField', sortField);
+      if (sortOrder) params.append('sortOrder', sortOrder);
 
-      const response = await fetch(`https://buy-now-be.onrender.com/products/products${query}`);
+      const url = `https://buy-now-be.onrender.com/products/products?${params.toString()}`;
+
+      const response = await fetch(url);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error('Error fetching products:', error);
     } finally {
       setLoading(false);
     }
   };
 
+  const renderedProducts = useMemo(() => {
+    return products.map((product) => (
+      <ProductItem key={product._id} product={product} />
+    ));
+  }, [products]);
+
   return (
     <div>
       {loading ? (
-        <Spinner />
+        <ProductListSkeleton />
       ) : (
         <div>
           <input
@@ -52,17 +59,24 @@ const ProductList = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
-              width: "50%",
-              marginTop: "20px",
-              textAlign: "center",
-              marginLeft: "140px",
-              borderRadius: "30px",
-              height: "30px",
-              border: "1px solid"
+              width: '50%',
+              marginTop: '20px',
+              textAlign: 'center',
+              marginLeft: '140px',
+              borderRadius: '30px',
+              height: '30px',
+              border: '1px solid',
             }}
           />
 
-          <div className="filters" style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+          <div
+            className="filters"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '20px',
+            }}
+          >
             <select value={rating} onChange={(e) => setRating(e.target.value)}>
               <option value="">Select Rating</option>
               <option value="1">1</option>
@@ -84,12 +98,18 @@ const ProductList = () => {
               value={priceMax}
               onChange={(e) => setPriceMax(e.target.value)}
             />
-            <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
+            <select
+              value={sortField}
+              onChange={(e) => setSortField(e.target.value)}
+            >
               <option value="">Sort By</option>
               <option value="price">Price</option>
               <option value="rating">Rating</option>
             </select>
-            <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+            <select
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
             </select>
@@ -97,9 +117,7 @@ const ProductList = () => {
 
           <div className="product-list">
             {products.length > 0 ? (
-              products.map((product) => (
-                <ProductItem key={product._id} product={product} />
-              ))
+              renderedProducts
             ) : (
               <Center>No products found</Center>
             )}

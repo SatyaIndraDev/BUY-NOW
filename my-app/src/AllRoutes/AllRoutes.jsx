@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 
-import ProductList  from "../pages/ProductList ";
+import ProductList  from "../pages/Product/ProductList ";
 
 
 
@@ -16,7 +16,7 @@ import Login from "../pages/Login";
 import PrivateRoutes from "./PrivateRoutes";
 
 import PaymentPage from "../pages/PaymentPage";
-import CartPage from "../pages/CartPage";
+import CartPage from "../pages/Product/CartPage";
 import ShoppingCart from "../pages/ShoppingCart";
 
 
