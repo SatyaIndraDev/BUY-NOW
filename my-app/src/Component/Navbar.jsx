@@ -34,7 +34,7 @@ const Navbar = () => {
 
          
         </div>
-        <Input  borderRadius={20} m={5}/>
+        {/* <Input  borderRadius={20} m={5}/> */}
         <div className="menu-icon" onClick={toggleMenu}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </div>
