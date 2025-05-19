@@ -38,7 +38,15 @@ function AllRoutes() {
 
             <Route path = '/payment' element = {<PaymentPage />} />
 
-            <Route path = '/admin' element = {<PrivateRoutes><AdminPage /></PrivateRoutes>} />
+            <Route path = '/admin' element = {
+              
+              // <PrivateRoutes>
+
+
+              <AdminPage />
+            // {/* </PrivateRoutes> */}
+          
+          } />
             {/* <Route path="/payment" component={<PaymentPage />} /> */}
 
 
