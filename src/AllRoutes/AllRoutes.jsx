@@ -18,6 +18,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import PaymentPage from "../pages/PaymentPage";
 import CartPage from "../pages/Product/CartPage";
 import ShoppingCart from "../pages/ShoppingCart";
+import ProductListingPage from "../pages/Product/ProductListingPage";
 
 
 
@@ -28,7 +29,7 @@ function AllRoutes() {
 
             <Route path = '/' element = {<Home />} />
 
-            <Route path = '/mens' element = {  <ProductList />} />
+            <Route path = '/mens' element = {  <ProductListingPage />} />
             
 
             <Route path = '/cart' element = {<CartPage />} />
