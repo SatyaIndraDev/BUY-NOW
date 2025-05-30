@@ -67,7 +67,7 @@ const CartPage = () => {
       key: "rzp_test_PuIvwrP2D7FLip", // Your Razorpay test key
       amount: amount * 100, // in paise
       currency: "INR",
-      name: "Green Paradise",
+      name: "Buy Now",
       description: "Payment for your order",
       image: "/logo.png", // optional logo
       handler: function (response) {
@@ -122,7 +122,7 @@ const CartPage = () => {
                     src={product.image}
                     alt={product.name}
                     boxSize="80px"
-                    objectFit="cover"
+                    objectFit="fit"
                     borderRadius="md"
                   />
                   <Box flex="1">

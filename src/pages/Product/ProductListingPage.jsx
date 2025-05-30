@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './ProductListingPage.css';
-import { FaSearch, FaHeart, FaStar, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { FaSearch, FaHeart, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { Loader2 } from 'lucide-react';
 
 const brands = ['Nike', 'Adidas', 'Puma', 'Reebok', 'Under armour', 'New balance'];
 
+// In-memory cache object
+const productCache = {};
+
 function ProductListingPage() {
   const [products, setProducts] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState('');
   const [brandFilters, setBrandFilters] = useState([]);
   const [minPrice, setMinPrice] = useState('');
@@ -16,7 +19,12 @@ function ProductListingPage() {
   const [sortOrder, setSortOrder] = useState('asc');
   const [loading, setLoading] = useState(false);
 
-  // Fetch products from API
+  // Cart with localStorage persistence
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem('cartItems');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -28,17 +36,19 @@ function ProductListingPage() {
       if (sortBy) params.append('sortField', sortBy);
       if (sortOrder) params.append('sortOrder', sortOrder);
 
-      const url = `https://buy-now-be.onrender.com/products/products?${params.toString()}`;
+      const queryString = params.toString();
+
+      if (productCache[queryString]) {
+        setProducts(productCache[queryString]);
+        return;
+      }
+
+      const url = `https://buy-now-be.onrender.com/products/products?${queryString}`;
       const response = await fetch(url);
       const data = await response.json();
 
-      // Apply brand filter client-side
-      const filteredByBrand = brandFilters.length > 0
-        ? data.filter(product => brandFilters.includes(product.name))
-        : data;
-
+      productCache[queryString] = data;
       setProducts(data);
-      setFiltered(filteredByBrand);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -46,18 +56,19 @@ function ProductListingPage() {
     }
   };
 
-  // Fetch on filters change
   useEffect(() => {
     fetchProducts();
   }, [search, minPrice, maxPrice, ratingFilter, sortBy, sortOrder]);
 
-  // Refetch when brandFilters change
-  useEffect(() => {
-    const result = brandFilters.length > 0
-      ? products.filter(p => brandFilters.includes(p.name))
-      : products;
-    setFiltered(result);
-  }, [brandFilters, products]);
+  const filtered = useMemo(() => {
+    let result = [...products];
+
+    if (brandFilters.length > 0) {
+      result = result.filter(product => brandFilters.includes(product.name));
+    }
+
+    return result;
+  }, [products, brandFilters]);
 
   const toggleBrand = (brand) => {
     setBrandFilters(prev =>
@@ -72,6 +83,22 @@ function ProductListingPage() {
     setRatingFilter(null);
     setBrandFilters([]);
   };
+
+  const addToCart = (selectedProduct) => {
+  setCartItems(prev => {
+    const exists = prev.find(item => item._id === selectedProduct._id);
+
+    if (exists) {
+      alert('Product already in cart!');
+      return prev; // no update
+    }
+
+    const updatedCart = [...prev, { ...selectedProduct, quantity: 1 }];
+    localStorage.setItem('cart2', JSON.stringify(updatedCart));
+    alert('Product added to cart!');
+    return updatedCart;
+  });
+};
 
   return (
     <div className="product-page">
@@ -124,11 +151,17 @@ function ProductListingPage() {
               {sortOrder === 'asc' ? <FaArrowUp /> : <FaArrowDown />} {sortOrder === 'asc' ? 'Low to High' : 'High to Low'}
             </button>
           </div>
+
+          <div className="cart-status">
+            🛒 Cart Items: {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+          </div>
         </div>
 
         <div className="products-grid">
           {loading ? (
-            <div className="loader">Loading...</div>
+            <div className="loader">
+              <Loader2 className="animate-spin h-6 w-6 text-gray-500" />
+            </div>
           ) : (
             filtered.map(p => (
               <div key={p._id} className="product-card">
@@ -136,7 +169,7 @@ function ProductListingPage() {
                   <img src={p.image} alt={p.name} />
                   <div className="rating-badge" style={{ backgroundColor: p.rating >= 4.5 ? 'green' : 'purple' }}>{p.rating} ★</div>
                   <FaHeart className="wishlist-icon" />
-                  <button className="add-to-bag">ADD TO BAG</button>
+                  <button className="add-to-bag" onClick={() => addToCart(p)}>ADD TO BAG</button>
                 </div>
                 <div className="info">
                   <h5>{p.name}</h5>

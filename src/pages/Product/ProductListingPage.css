@@ -133,7 +133,7 @@ body {
 .image-box img {
   width: 100%;
   height: 240px;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .rating-badge {
@@ -213,4 +213,43 @@ body {
   color: #e65100;
   font-size: 12px;
   margin-left: 4px;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination button.active {
+  background-color: #e91e63;
+  color: white;
+  border-color: #e91e63;
+}
+.cart-status {
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 14px;
 }
