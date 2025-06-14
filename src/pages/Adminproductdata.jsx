@@ -84,27 +84,50 @@ function AdminProdduct({ setRen, ren }) {
           <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
         </Center>
       ) : (
-        <Grid gap="6px" templateColumns="repeat(4,1fr)" className="main_container" m="20px">
+        <Grid
+          gap={6}
+          templateColumns="repeat(auto-fill, minmax(230px, 1fr))"
+          px={6}
+          mt={6}
+        >
           {state?.data?.products?.map((el) => (
-            <Box mt="25px" m="30px" p="10px" key={el._id} boxShadow="rgba(0,0,0,0.2) 0px 5px 15px" textAlign="center">
-              <Center>
-                <Img height="300px" w="100%" src={el.image} />
-              </Center>
-              <h1>ID: {el._id}</h1>
-              <p style={{ fontWeight: "bold", fontSize: "18px" }}>{el.name}</p>
-              <p>{el.desc}</p>
-              <p>⭐ {el.rating}</p>
-              <p>₹ {el.price}</p>
-              <Center gap="10px" mt="20px">
-                <Button onClick={() => handleDelete(el._id)} colorScheme="red" size="sm">Delete</Button>
-                <Button onClick={() => handleEdit(el)} colorScheme="green" size="sm">Edit</Button>
-              </Center>
+            <Box
+              key={el._id}
+              p={4}
+              boxShadow="md"
+              borderRadius="md"
+              border="1px solid #e2e8f0"
+              _hover={{ boxShadow: "lg", transform: "translateY(-4px)", transition: "all 0.3s ease-in-out" }}
+              bg="white"
+              textAlign="center"
+            >
+              <Img
+                src={el.image}
+                alt={el.name}
+                height="180px"
+                objectFit="cover"
+                w="100%"
+                borderRadius="md"
+                mb={3}
+              />
+              <Box fontWeight="bold" fontSize="lg" mb={1}>{el.name}</Box>
+              <Box fontSize="sm" color="gray.600" mb={1}>{el.desc}</Box>
+              <Box fontSize="sm">⭐ {el.rating}</Box>
+              <Box fontSize="md" fontWeight="semibold" color="green.600">₹ {el.price}</Box>
+              <HStack justify="center" mt={4}>
+                <Button onClick={() => handleDelete(el._id)} colorScheme="red" size="sm">
+                  Delete
+                </Button>
+                <Button onClick={() => handleEdit(el)} colorScheme="green" size="sm">
+                  Edit
+                </Button>
+              </HStack>
             </Box>
           ))}
         </Grid>
       )}
 
-      {/* Edit Modal with Redux update */}
+      {/* Edit Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
         <ModalContent borderRadius="lg">

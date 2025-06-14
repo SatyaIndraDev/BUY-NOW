@@ -46,27 +46,6 @@ export const AdminPage = () => {
           </Button>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", margin: "30px" }}>
-          <div style={{ padding: "10px", boxShadow: "0px 5px 5px 0px red", height: "60px", width: "300px" }}>
-            <h3>EARNINGS (MONTHLY)</h3>
-            <h3>Rs. 4,00,000</h3>
-          </div>
-
-          <div style={{ padding: "10px", boxShadow: "0px 5px 5px 0px green", height: "60px", width: "300px" }}>
-            <h3>EARNINGS (ANNUAL)</h3>
-            <h3>Rs. 2,15,000,000</h3>
-          </div>
-
-          <div style={{ padding: "10px", boxShadow: "0px 5px 5px 0px blue", height: "60px", width: "300px" }}>
-            <h3>TASKS</h3>
-            <h3>50%</h3>
-          </div>
-
-          <div style={{ padding: "10px", boxShadow: "0px 5px 5px 0px yellow", height: "60px", width: "300px" }}>
-            <h3>PENDING REQUESTS</h3>
-            <h3>18</h3>
-          </div>
-        </div>
 
         <AdminProdduct setRen={setRen} ren={ren} />
 

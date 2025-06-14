@@ -1,7 +1,53 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './ProductListingPage.css';
 import { FaSearch, FaHeart, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { Loader2 } from 'lucide-react';
+import { Wrap } from '@chakra-ui/react';
+
+// import { Loader2 } from "lucide-react";
+// import { useEffect, useRef } from "react";
+
+export function LoaderComponent() {
+  const loaderRef = useRef(null);
+
+  useEffect(() => {
+    let angle = 0;
+    const interval = setInterval(() => {
+      if (loaderRef.current) {
+        angle = (angle + 6) % 360; // 6 deg per 16ms ~ 1s per full spin
+        loaderRef.current.style.transform = `rotate(${angle}deg)`;
+      }
+    }, 16); // ~60fps
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)", // Center the loader
+        zIndex: 9999,
+        backgroundColor: "#ffffffcc", // Optional: light overlay
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
+      <Loader2
+        ref={loaderRef}
+        style={{
+          width: "64px",
+          height: "64px",
+          color: "#e91e63", // Myntra pink
+        }}
+      />
+    </div>
+  );
+}
+
+
+
 
 const brands = ['Nike', 'Adidas', 'Puma', 'Reebok', 'Under armour', 'New balance'];
 
@@ -107,12 +153,12 @@ function ProductListingPage() {
     });
   };
 
-// if(loading)
-// {
-//   return (
-//     <LoaderComponent />
-//   )
-// }
+  // if(loading)
+  // {
+  //   return (
+  //     <LoaderComponent />
+  //   )
+  // }
 
   return (
     <div className="product-page">
@@ -182,42 +228,54 @@ function ProductListingPage() {
 
         <div className="products-grid">
           {loading ? (
-null          ) : (
-            paginatedProducts.map(p => (
-              <div key={p._id} className="product-card">
-                <div className="image-box">
-                  <img src={p.image} alt={p.name} />
-                  <div className="rating-badge" style={{ backgroundColor: p.rating >= 4.5 ? 'green' : 'purple' }}>{p.rating} ★</div>
-                  <FaHeart className="wishlist-icon" />
-                  <button className="add-to-bag" onClick={() => addToCart(p)}>ADD TO BAG</button>
+            <LoaderComponent />
+          ) : paginatedProducts.length === 0 ? (
+            <div className="no-products-message">
+              <p style={{ fontSize: "18px", color: "#555", textAlign: "center", padding: "40px" }}>
+                No products available.
+              </p>
+            </div>
+          )
+            : (
+              paginatedProducts.map(p => (
+                <div key={p._id} className="product-card">
+                  <div className="image-box">
+                    <img src={p.image} alt={p.name} />
+                    <div className="rating-badge" style={{ backgroundColor: p.rating >= 4.5 ? 'green' : 'purple' }}>{p.rating} ★</div>
+                    <FaHeart className="wishlist-icon" />
+                    <button className="add-to-bag" onClick={() => addToCart(p)}>ADD TO BAG</button>
+                  </div>
+                  <div className="info">
+                    <h5>{p.name}</h5>
+                    <p>{p.desc}</p>
+                    <div className="price">₹{p.price} <span className="strike">₹{p.originalPrice}</span> <span className="discount">({p.discount}% OFF)</span></div>
+                  </div>
                 </div>
-                <div className="info">
-                  <h5>{p.name}</h5>
-                  <p>{p.desc}</p>
-                  <div className="price">₹{p.price} <span className="strike">₹{p.originalPrice}</span> <span className="discount">({p.discount}% OFF)</span></div>
-                </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
         </div>
 
         {/* Pagination Controls */}
-        <div className="pagination">
-          <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>&lt;</button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-            <button
-              key={page}
-              className={currentPage === page ? 'active' : ''}
-              onClick={() => {
-                setCurrentPage(page);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              {page}
-            </button>
-          ))}
-          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>&gt;</button>
-        </div>
+        {/* Pagination Controls */}
+        {!loading && paginatedProducts.length > 0 && (
+          <div className="pagination">
+            <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>&lt;</button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <button
+                key={page}
+                className={currentPage === page ? 'active' : ''}
+                onClick={() => {
+                  setCurrentPage(page);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                {page}
+              </button>
+            ))}
+            <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>&gt;</button>
+          </div>
+        )}
+
       </main>
     </div>
   );

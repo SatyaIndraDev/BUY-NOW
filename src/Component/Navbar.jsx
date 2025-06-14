@@ -28,7 +28,7 @@ const Navbar = () => {
 
 
           <a href="/">
-<img src="../images/Buy-now1.png" alt=""  style={{width :"200px" ,height:"65px"}}/>
+<img src="../images/newLogo.png" alt=""  style={{width :"150px" ,height:"55px"}}/>
 
           </a>
 
@@ -63,7 +63,14 @@ const Navbar = () => {
           {auth ? (
               <div>
             
-              <button onClick={logout} colorScheme="teal">Logout</button>
+              <button onClick={logout} colorScheme="teal">
+                              <a href="/" className="nav-links" style={handleColor}>
+                              Logout
+                              </a>
+
+                
+                
+                </button>
 
               </div>
             ) : (
