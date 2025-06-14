@@ -105,7 +105,7 @@ function AdminProdduct({ setRen, ren }) {
                 src={el.image}
                 alt={el.name}
                 height="180px"
-                objectFit="cover"
+                objectFit="fill"
                 w="100%"
                 borderRadius="md"
                 mb={3}

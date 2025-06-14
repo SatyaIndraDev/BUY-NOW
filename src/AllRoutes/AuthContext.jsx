@@ -32,19 +32,9 @@ const logout = () => {
 setauth(false);
     console.log("logout success");
   };
-
-
-
     return(
-
         <Context.Provider value={{auth,login,logout}}>
-
-        {props.children}
-    
-
-        
-    
-
+     {props.children}
         </Context.Provider> 
         
         )

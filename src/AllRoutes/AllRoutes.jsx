@@ -23,6 +23,8 @@ import ProductListingPage from "../pages/Product/ProductListingPage";
 
 
 function AllRoutes() {
+
+
   return (
     <Routes>
 
@@ -40,11 +42,9 @@ function AllRoutes() {
 
             <Route path = '/admin' element = {
               
-              // <PrivateRoutes>
 
 
               <AdminPage />
-            // {/* </PrivateRoutes> */}
           
           } />
             {/* <Route path="/payment" component={<PaymentPage />} /> */}
