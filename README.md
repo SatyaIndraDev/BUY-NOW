@@ -1,64 +1,76 @@
-# SHOP NOW
+# 🛒 BUY-NOW
 
-💻 Koovs ( clone ) : an ecommerce Website 🚀🎯
+A full-featured e-commerce platform inspired by Koovs, built with the MERN stack (MongoDB, Express.js, React.js, Node.js) and Chakra UI for a modern shopping experience.
 
+---
 
-## Overview
+## 🚀 Overview
 
-This project is a clone of the popular e-commerce website, Koovs. It functions similarly to the original Myntra platform, allowing users to create accounts, buy and sell products, bid on auctions, and leave feedback for transactions. The website features various categories for Clothing Products for Mens, Womens, Kids and other Accessories.
+**BUY-NOW** lets users browse and search clothing & accessories for men, women, and kids, add products to their cart, register/login, checkout, and more. An admin interface enables product management and order oversight.
 
-## Features
+---
 
-- Secure user authentication and authorization
-- User profiles for buying and selling products
-- Categories for organizing products
-- Checkout process for buyers to purchase products
-- Functionality on products
-- Sort by Price
-- Filter by brands
--search by name, product or brand
-- Multiple filters functionality
-- Add to Cart | Delete from Cart | Proceed to checkout
+## ✨ Features
 
-## Technologies Used
+- User registration & login with JWT authentication
+- Browse by categories (Men, Women, Kids, Accessories)
+- Advanced product search and multi-filter (brand, price, rating, etc.)
+- Sort products by price and name
+- Add to cart, remove from cart, and checkout
+- Admin dashboard: add, update, delete products
+- Responsive design (mobile & desktop)
+- View order summary and payment details
+- [Optional] Product reviews and ratings
 
-- `HTML`
-- `CSS`
-- `Javascript`
-- `React`
-- `Chakra UI`
-- `React Router`
+---
 
-## Demo 
-- Landing Page
-![Screenshot (1381)](https://user-images.githubusercontent.com/112798268/235489073-18515f27-49e1-4791-9a69-6d30af25749c.png)
+## 🛠️ Tech Stack
 
-![Screenshot (1382)](https://user-images.githubusercontent.com/112798268/235489089-8cc315b9-a78e-4f4d-be44-0586d6870921.png)
+**Frontend**
+- React.js
+- Chakra UI
+- React Router
+- HTML5, CSS3, JavaScript (ES6)
 
-**GUIDE :** `⬇️ If you click on Mens , you can able to see the following Interface` and here are all different functionalities you can sort by price, sort by name, and search by name,brand and all different functionalities are on this page
-
-![Screenshot (1390)](https://user-images.githubusercontent.com/112798268/235490695-7d9c703c-e214-4b48-95c0-d92a8d2648df.png)
-
-![Screenshot (1391)](https://user-images.githubusercontent.com/112798268/235490697-4a48ad63-45c7-43c1-9a67-0506d1f6c937.png)
+**Backend**
+- Node.js
+- Express.js
+- MongoDB (Atlas)
+- Mongoose
 
 
-**GUIDE :** `If you click on add to Cart, item will be added to Cart`![Screenshot (1392)](https://user-images.githubusercontent.com/112798268/235490701-935eeca3-7002-42d7-92d8-b2fbb8fce1a3.png)
+---
 
-**GUIDE :** `⬇️This is the Cart Page, here you can see all Products which you have added to cart⬇️` on right side there are payment details of your cart products
+## 📸 Screenshots
 
-![Screenshot (1393)](https://user-images.githubusercontent.com/112798268/235491305-44348723-c6f0-4eeb-9dcf-19fda9fbdea7.png)
+### Landing Page  
+![Landing Page](https://user-images.githubusercontent.com/112798268/235489073-18515f27-49e1-4791-9a69-6d30af25749c.png)
 
+### Product Listings  
+![Product Listing](https://user-images.githubusercontent.com/112798268/235490695-7d9c703c-e214-4b48-95c0-d92a8d2648df.png)
 
+### Cart Page  
+![Cart Page](https://user-images.githubusercontent.com/112798268/235491305-44348723-c6f0-4eeb-9dcf-19fda9fbdea7.png)
 
-**GUIDE :** `To go on Admin page click on Admin option in Navbar`
+### Admin Dashboard  
+_Log in with:_  
+`email: admin@gmail.com.com`  
+`password: admin`  
+![Admin Page](https://user-images.githubusercontent.com/112798268/235491592-b527da21-8d46-48f0-8a60-9913651b88d2.png)
 
-`you can log into Admin page with these Credentials` and there you can perform all create and delete functionality.
+---
 
-`email-test@test.com
-password-test1`
+## 🧑‍💻 Getting Started
 
-![Screenshot (1394)](https://user-images.githubusercontent.com/112798268/235491592-b527da21-8d46-48f0-8a60-9913651b88d2.png)
+### Prerequisites
 
-![Screenshot (1395)](https://user-images.githubusercontent.com/112798268/235491600-3ef07ef0-b989-42db-95e2-e709b6222e68.png)
+- Node.js (v14+)
+- npm (v6+)
+- MongoDB Atlas account (or local MongoDB)
 
-![Screenshot (1396)](https://user-images.githubusercontent.com/112798268/235491605-d5bbf386-5f4c-458b-a1d5-dbe7d8d59d1e.png)
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SatyaIndraDev/BUY-NOW.git
+   cd BUY-NOW
