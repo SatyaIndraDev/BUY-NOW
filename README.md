@@ -3,31 +3,63 @@
 💻 Koovs ( clone ) : an ecommerce Website 🚀🎯
 
 
-## Overview
+Overview
+This project is a clone of the popular e-commerce website Koovs. It functions similarly to platforms like Myntra, allowing users to browse products, create accounts, manage their carts, and checkout. Admin users can manage product listings as well.
 
-This project is a clone of the popular e-commerce website, Koovs. It functions similarly to the original Myntra platform, allowing users to create accounts, buy and sell products, bid on auctions, and leave feedback for transactions. The website features various categories for Clothing Products for Mens, Womens, Kids and other Accessories.
+The site features categories for men's, women's, and kids' clothing, as well as accessories.
 
-## Features
+Features
+🔒 Secure user authentication and authorization (MERN)
 
-- Secure user authentication and authorization
-- User profiles for buying and selling products
-- Categories for organizing products
-- Checkout process for buyers to purchase products
-- Functionality on products
-- Sort by Price
-- Filter by brands
--search by name, product or brand
-- Multiple filters functionality
-- Add to Cart | Delete from Cart | Proceed to checkout
+👤 User profiles for buying/selling products
 
-## Technologies Used
+📚 Product categories for easy browsing
 
-- `HTML`
-- `CSS`
-- `Javascript`
-- `React`
-- `Chakra UI`
-- `React Router`
+🛒 Full cart flow: add, remove, and checkout
+
+💸 Checkout process for buyers
+
+🔍 Search by product name, brand, or category
+
+📊 Sort products by price or name
+
+🏷️ Filter by brand and multiple other filters
+
+🏷️ Auction/bidding functionality (if implemented)
+
+⭐ Leave feedback/review on transactions
+
+⚙️ Admin panel for product management (create/delete)
+
+Responsive design
+
+Technologies Used
+Frontend
+
+HTML
+
+CSS
+
+JavaScript
+
+React.js
+
+Chakra UI
+
+React Router
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB Atlas (cloud database)
+
+Mongoose (MongoDB ODM)
+
+RESTful APIs
+
 
 ## Demo 
 - Landing Page
