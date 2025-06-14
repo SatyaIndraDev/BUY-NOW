@@ -25,6 +25,10 @@ function ProductListingPage() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -62,13 +66,18 @@ function ProductListingPage() {
 
   const filtered = useMemo(() => {
     let result = [...products];
-
     if (brandFilters.length > 0) {
       result = result.filter(product => brandFilters.includes(product.name));
     }
-
     return result;
   }, [products, brandFilters]);
+
+  // Paginate filtered products
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filtered.slice(start, start + itemsPerPage);
+  }, [filtered, currentPage]);
 
   const toggleBrand = (brand) => {
     setBrandFilters(prev =>
@@ -85,20 +94,25 @@ function ProductListingPage() {
   };
 
   const addToCart = (selectedProduct) => {
-  setCartItems(prev => {
-    const exists = prev.find(item => item._id === selectedProduct._id);
+    setCartItems(prev => {
+      const exists = prev.find(item => item._id === selectedProduct._id);
+      if (exists) {
+        alert('Product already in cart!');
+        return prev;
+      }
+      const updatedCart = [...prev, { ...selectedProduct, quantity: 1 }];
+      localStorage.setItem('cart2', JSON.stringify(updatedCart));
+      alert('Product added to cart!');
+      return updatedCart;
+    });
+  };
 
-    if (exists) {
-      alert('Product already in cart!');
-      return prev; // no update
-    }
-
-    const updatedCart = [...prev, { ...selectedProduct, quantity: 1 }];
-    localStorage.setItem('cart2', JSON.stringify(updatedCart));
-    alert('Product added to cart!');
-    return updatedCart;
-  });
-};
+// if(loading)
+// {
+//   return (
+//     <LoaderComponent />
+//   )
+// }
 
   return (
     <div className="product-page">
@@ -139,31 +153,37 @@ function ProductListingPage() {
 
       <main className="main-content">
         <div className="topbar">
-          <div className="search-input">
+          {/* Left: Search Bar */}
+          <div className="search-container">
             <FaSearch className="icon" />
-            <input type="text" placeholder="Search for products, brands and more" value={search} onChange={e => setSearch(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Search for products, brands and more"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
           </div>
 
-          <div className="sort-buttons">
-            <button onClick={() => setSortBy('price')} className={sortBy === 'price' ? 'active' : ''}>Price</button>
-            <button onClick={() => setSortBy('rating')} className={sortBy === 'rating' ? 'active' : ''}>Rating</button>
-            <button onClick={() => setSortOrder(o => o === 'asc' ? 'desc' : 'asc')}>
-              {sortOrder === 'asc' ? <FaArrowUp /> : <FaArrowDown />} {sortOrder === 'asc' ? 'Low to High' : 'High to Low'}
+          {/* Middle: Sort Buttons */}
+          <div className="sort-group">
+            <button onClick={() => setSortBy('price')} className={sortBy === 'price' ? 'active' : ''}>
+              Price
             </button>
-          </div>
-
-          <div className="cart-status">
-            🛒 Cart Items: {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+            <button onClick={() => setSortBy('rating')} className={sortBy === 'rating' ? 'active' : ''}>
+              Rating
+            </button>
+            <button onClick={() => setSortOrder(o => o === 'asc' ? 'desc' : 'asc')} className="sort-toggle">
+              {sortOrder === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
+              <span>{sortOrder === 'asc' ? 'Low to High' : 'High to Low'}</span>
+            </button>
           </div>
         </div>
 
+
         <div className="products-grid">
           {loading ? (
-            <div className="loader">
-              <Loader2 className="animate-spin h-6 w-6 text-gray-500" />
-            </div>
-          ) : (
-            filtered.map(p => (
+null          ) : (
+            paginatedProducts.map(p => (
               <div key={p._id} className="product-card">
                 <div className="image-box">
                   <img src={p.image} alt={p.name} />
@@ -179,6 +199,24 @@ function ProductListingPage() {
               </div>
             ))
           )}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="pagination">
+          <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>&lt;</button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+            <button
+              key={page}
+              className={currentPage === page ? 'active' : ''}
+              onClick={() => {
+                setCurrentPage(page);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              {page}
+            </button>
+          ))}
+          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>&gt;</button>
         </div>
       </main>
     </div>
