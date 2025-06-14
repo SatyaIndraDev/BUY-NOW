@@ -37,7 +37,7 @@ A full-featured e-commerce platform inspired by Koovs, built with the MERN stack
 - Express.js
 - MongoDB (Atlas)
 - Mongoose
-- JWT Authentication
+
 
 ---
 
@@ -54,8 +54,8 @@ A full-featured e-commerce platform inspired by Koovs, built with the MERN stack
 
 ### Admin Dashboard  
 _Log in with:_  
-`email: test@test.com`  
-`password: test1`  
+`email: admin@gmail.com.com`  
+`password: admin`  
 ![Admin Page](https://user-images.githubusercontent.com/112798268/235491592-b527da21-8d46-48f0-8a60-9913651b88d2.png)
 
 ---
